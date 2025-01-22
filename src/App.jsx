@@ -1,7 +1,37 @@
-import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 import './App.css'
+import { useEffect, useState } from 'react';
+
+import {AddNote}  from './components/AddNote';
+import { GetNotes } from './components/GetNotes';
+
+
+
+function Courses() {
+  const { course} = useParams();
+
+
+
+
+
+  return <div id="courses">
+
+    
+    {course}
+
+
+    {<GetNotes course={course}/>}
+    {<AddNote course={course}/>}
+
+              
+
+
+
+  </div>;
+}
+
+
 
 function Home() {
 
@@ -14,9 +44,7 @@ function Home() {
 
 <ul>
   {courses.map(course => (
-    <li key={course}>
-      <li><Link to={`${course}`}>{course}</Link></li>
-    </li>
+      <li key={course}><Link to={`${course}`}>{course}</Link></li>
   ))}
 
 </ul>
@@ -26,11 +54,6 @@ function Home() {
 }
 
 
-function ClassPage() {
-  const { className } = useParams();
-  return <div id="class-page">{className}
-  </div>;
-}
 
 
 function App() {
@@ -42,7 +65,7 @@ function App() {
        <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:className" element={<ClassPage />} />
+        <Route path="/:course" element={<Courses />} />
       </Routes>
     </Router>
     </div>
