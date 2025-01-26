@@ -3,6 +3,10 @@
 }
 
 
+.note-card-container{
+  position: relative;
+}
+
 .note-card {
   width: 300px;
   height: 400px;
