@@ -21,16 +21,8 @@ export const GetNotes = ({ course }) => {
     let fetchNotes = () => {
         firebaseGet(course).then(data => {
 
-            data.sort((a, b) => {
-                // Sort by newest date first
-                const dateComparison = new Date(b.date) - new Date(a.date);
-                if (dateComparison !== 0) return dateComparison;
-
-                // If dates are the same, sort by highest rating
-                return b.rating - a.rating;
-            });
-
             setNotes(data)
+            
             setNote(data[0])
         })
     }
@@ -72,7 +64,7 @@ export const GetNotes = ({ course }) => {
 
         let userConfirmed = window.prompt("confirm with password");
 
-        if (userConfirmed=="3654") {
+        if (userConfirmed == "3654") {
             firebaseDelete(course, note?.id).then(() => {
                 setIsFlipped(false);
 
@@ -90,7 +82,7 @@ export const GetNotes = ({ course }) => {
         id="notes"
         initial={{ opacity: 0 }} // Start invisible
         animate={{ opacity: 1 }} // Fade in to fully visible
-        transition={{ duration: 1 }} // Animation duration
+        transition={{ duration: .3 }} // Animation duration
     >
 
 
@@ -112,14 +104,15 @@ export const GetNotes = ({ course }) => {
                 >
 
                     {/* Front Side */}
-                    <div className="note-card-front">
+                    {!isFlipped && <div className="note-card-front">
                         <img src={note?.frontImgUrl} alt="Front Preview" />
-                    </div>
+                    </div>}
+
 
                     {/* Back Side */}
-                    <div className="note-card-back">
+                    {isFlipped && <div className="note-card-back">
                         <img src={note?.backImgUrl} alt="Back Preview" />
-                    </div>
+                    </div>}
                 </div>
 
                 <div id="card-actions">
@@ -154,7 +147,7 @@ export const GetNotes = ({ course }) => {
 
         {
 
-            notes.length == 0 && <div id="notes">no cards</div>
+            notes.length == 0 && <div id="notes">no notes</div>
 
         }
 
