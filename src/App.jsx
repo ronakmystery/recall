@@ -64,8 +64,9 @@ Courses
 
 
 
-    Study using a problem-solution method.
-   <div></div> 
+  Study using a problem-solution approach.
+   <br/> 
+   <br/>
    Designed and developed by Ronak Mistry.
   </div>;
 }

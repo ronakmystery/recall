@@ -4,16 +4,25 @@
 }
 
 #add-note img{
-    width: 100%;
+    max-height: 200px;
+    max-width: 100%;
+    display: block;
+    border: 2px solid black;
 }
 
-#upload{
-    background: var(--theme);
-    color: white;
-}
+
 
 #message{
     display: block;
     margin: 20px;
+}
+
+.img-paste{
+    width: 100px;
+    margin: 10px;
+    box-shadow: var(--inset-shadow);
+    padding: 5px;
+    font-size: 10px;
+    border-radius: 5px;
 }
 

@@ -32,7 +32,7 @@ export const AddNote = ({ course }) => {
       };
       reader.readAsDataURL(file);
     } else {
-      setMessage("file bigger than 5MB")
+      setMessage("file bigger than 7MB")
       setTimeout(() => {
         setMessage(null)
         if (side === 'front') {
@@ -46,6 +46,7 @@ export const AddNote = ({ course }) => {
   };
 
   let addNote = async () => {
+
 
 
     if (!frontImage || !backImage) {
@@ -87,7 +88,40 @@ export const AddNote = ({ course }) => {
       console.log(error)
     }
 
+
+
+
   }
+
+  const handlePaste = (event, side) => {
+
+    setTimeout(() => {
+      event.target.innerHTML = "paste image here from clipboard";
+    }, 100);
+
+    const clipboardItems = event.clipboardData.items;
+
+    for (const item of clipboardItems) {
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile();
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (side === 'front') {
+            setFrontFile(file)
+            setFrontImage(reader.result);
+
+          } else {
+            setBackFile(file)
+            setBackImage(reader.result);
+          }
+        };
+        reader.readAsDataURL(file);
+
+        break;
+      }
+    }
+  };
 
 
   return <div id="add-note">
@@ -103,9 +137,16 @@ export const AddNote = ({ course }) => {
         {frontImage ? (
           <img src={frontImage} alt="Front Preview" />
         ) : (
-          <p>No image selected</p>
+          <p
+          >?</p>
         )}
+        <div
+          className="img-paste"
+          contentEditable
+          onPaste={(e) => handlePaste(e, 'front')}
+        >paste image from clipboard</div>
         <input
+          onPaste={(e) => handlePaste(e, 'front')}
           type="file"
           accept="image/*"
           // capture="environment" required
@@ -121,8 +162,15 @@ export const AddNote = ({ course }) => {
         {backImage ? (
           <img src={backImage} alt="Back Preview" />
         ) : (
-          <p>No image selected</p>
+          <p
+
+          >?</p>
         )}
+        <div
+          className="img-paste"
+          contentEditable
+          onPaste={(e) => handlePaste(e, 'back')}
+        >paste image from clipboard</div>
         <input
           type="file"
           accept="image/*"
@@ -133,10 +181,10 @@ export const AddNote = ({ course }) => {
       </div>
     </div>
 
-        {!message&&<button
+    {!message && <button
       id="upload"
       onClick={() => addNote()}>upload</button>}
-    
+
 
     {message && <button id="message">{message}</button>}
 
