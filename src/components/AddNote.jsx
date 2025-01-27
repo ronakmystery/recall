@@ -1,13 +1,11 @@
 import { addNoteToFirestore, uploadImage } from '../firebase';
-import {  useState } from 'react';
+import { useState } from 'react';
+import './AddNote.css'
 
 
-export const AddNote = ({course}) => {
+export const AddNote = ({ course }) => {
 
-  const [isFlipped, setIsFlipped] = useState(false);
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
-  };
+
   const [frontImage, setFrontImage] = useState(null);
   const [backImage, setBackImage] = useState(null);
   const [frontFile, setFrontFile] = useState(null)
@@ -19,7 +17,7 @@ export const AddNote = ({course}) => {
   const handleImageChange = (e, side) => {
 
     const file = e.target.files[0];
-    const maxSize = 5 * 1024 * 1024; // 5 MB
+    const maxSize = 7 * 1024 * 1024; // 7 MB
 
     if (file && file.size <= maxSize) {
       const reader = new FileReader();
@@ -76,16 +74,14 @@ export const AddNote = ({course}) => {
       }
 
       const noteId = await addNoteToFirestore(note);
-      setBackImage(null)
-      setFrontImage(null)
-      setIsFlipped(false)
-      setFrontFile(null)
-      setBackFile(null)
-
-      setMessage("note added" + noteId)
+      setMessage("note added")
 
       setTimeout(() => {
         setMessage(null)
+        setBackImage(null)
+        setFrontImage(null)
+        setFrontFile(null)
+        setBackFile(null)
       }, 1000);
     } catch (error) {
       console.log(error)
@@ -96,18 +92,13 @@ export const AddNote = ({course}) => {
 
   return <div id="add-note">
 
-    add note
 
-
-    <div id="message">{message}</div>
 
 
     <div
-      className={`note-card ${isFlipped ? 'flipped' : ''}`}
-      onClick={handleFlip}
     >
       {/* Front Side */}
-      <div className="note-card-front">
+      <div className="add-note-card-front">
         <h2>Problem</h2>
         {frontImage ? (
           <img src={frontImage} alt="Front Preview" />
@@ -117,7 +108,7 @@ export const AddNote = ({course}) => {
         <input
           type="file"
           accept="image/*"
-          capture="environment" required
+          // capture="environment" required
           onChange={(e) => handleImageChange(e, 'front')}
           onClick={(e) => e.stopPropagation()} // Prevent parent click
 
@@ -125,7 +116,7 @@ export const AddNote = ({course}) => {
       </div>
 
       {/* Back Side */}
-      <div className="note-card-back">
+      <div className="add-note-card-back">
         <h2>Solution</h2>
         {backImage ? (
           <img src={backImage} alt="Back Preview" />
@@ -135,15 +126,20 @@ export const AddNote = ({course}) => {
         <input
           type="file"
           accept="image/*"
-          capture="environment" required
+          // capture="environment" required
           onChange={(e) => handleImageChange(e, 'back')}
           onClick={(e) => e.stopPropagation()} // Prevent parent click
         />
       </div>
     </div>
 
+        {!message&&<button
+      id="upload"
+      onClick={() => addNote()}>upload</button>}
+    
 
-    <button onClick={() => addNote()}>add note</button>
+    {message && <button id="message">{message}</button>}
+
 
   </div>;
 }

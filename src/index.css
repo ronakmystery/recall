@@ -1,44 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@300&display=swap');
 
-:root{
+:root {
 
 
   --primary-font: 'Lato', sans-serif;
---secondary-font: 'Montserrat', sans-serif;
+  --secondary-font: 'Montserrat', sans-serif;
 
-  --shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  --inset-shadow:black 1px 1px 3px 0 inset;
-  --theme:#6b63ff;
-  --yellow:#ffee58;
-  --blue:#42a5f5;
-  --green:#66bb6a;
-  --red:#ef5350;
-  
-  --dark:rgb(30,30,30);
-  --light:rgb(240,240,240);
-  }
+  --shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --inset-shadow: black 1px 1px 3px 0 inset;
+  --theme: #6b63ff;
+  --yellow: #ffee58;
+  --blue: #42a5f5;
+  --green: #66bb6a;
+  --red: #ef5350;
 
-  ::-webkit-scrollbar {
-    display: none;
-    }
-
-    html{
-      font-size: 100%;
-    }
-
-    body{
-      margin:0;padding:0;
-      background:var(--light);
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-
-    }
-    
-
-body,button{
-  font-family:var(--primary-font);
+  --dark: rgb(30, 30, 30);
+  --light: rgb(240, 240, 240);
 }
 
-input{
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--light);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+
+body,
+button {
+  font-family: var(--primary-font);
+}
+
+input {
   margin: 10px;
   border: none;
   box-shadow: var(--inset-shadow);
@@ -47,21 +49,16 @@ input{
   appearance: none;
 }
 
-button{
-background:none;
-  cursor:pointer;
+button {
+  background: none;
+  cursor: pointer;
   box-shadow: var(--shadow);
-  text-transform:uppercase;
-      padding: 5px 10px;
-      border-radius: 5px;
-      border: none;
-      &:active{
-        background:var(--green) !important;
-        color:white !important;
-      }
-}    
-
-a{
-  text-decoration:none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
 }
 
+a {
+  text-decoration: none;
+}

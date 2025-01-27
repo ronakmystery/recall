@@ -3,31 +3,40 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 import './App.css'
 import { useEffect, useState } from 'react';
 
-import {AddNote}  from './components/AddNote';
+import { AddNote } from './components/AddNote';
 import { GetNotes } from './components/GetNotes';
 
 
 
+
+
 function Courses() {
-  const { course} = useParams();
+  const { course } = useParams();
 
+  const [action, setAction] = useState(['study notes'])
 
+  let actions = {
+    'study notes': <GetNotes course={course} />,
+    'add note': <AddNote course={course} />,
+  }
 
 
 
   return <div id="courses">
 
-    
-    {course}
+    <div id="course-name">    {course}
+    </div>
+    <div id="actions">
+      {
+        Object.keys(actions).map((x) => <button
+        key={x}
+          className={`action ${action == x && 'selected-action'}`}
+          onClick={() => setAction(x)}>{x}</button>)
+      }
+    </div>
 
-
-    {<GetNotes course={course}/>}
-    {<AddNote course={course}/>}
-
-              
-
-
-
+    <div>  {actions[action]}</div>
+    <button id="home-button-link"><Link to={'/'}>home</Link></button>
   </div>;
 }
 
@@ -36,20 +45,28 @@ function Courses() {
 function Home() {
 
   let courses = ["formal-languages", "algorithms"]
+  
+
+  return <div id="home">
+
+ 
+
+    
+Courses
+      <ul>
+        {courses.map(course => (
+          <button
+            className='course-link'
+            key={course}><Link to={`/${course}`}>{course}</Link></button>
+        ))}
+
+      </ul>
 
 
-  return <div id="home">Welcome to the Home Page
 
-<nav>
-
-<ul>
-  {courses.map(course => (
-      <li key={course}><Link to={`${course}`}>{course}</Link></li>
-  ))}
-
-</ul>
-</nav>
-
+    Study using a problem-solution method.
+   <div></div> 
+   Designed and developed by Ronak Mistry.
   </div>;
 }
 
@@ -62,14 +79,14 @@ function App() {
 
   return (
     <div id="app">
-       <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/:course" element={<Courses />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:course" element={<Courses />} />
+        </Routes>
+      </Router>
     </div>
-   
+
   )
 }
 

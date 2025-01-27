@@ -1,0 +1,19 @@
+#add-note{
+    text-align: -webkit-center;
+
+}
+
+#add-note img{
+    width: 100%;
+}
+
+#upload{
+    background: var(--theme);
+    color: white;
+}
+
+#message{
+    display: block;
+    margin: 20px;
+}
+
