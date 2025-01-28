@@ -126,6 +126,12 @@ export const AddNote = ({ course }) => {
 
   return <div id="add-note">
 
+    {!message && <button
+      id="upload"
+      onClick={() => addNote()}>upload</button>}
+
+
+    {message && <button id="message">{message}</button>}
 
 
 
@@ -145,6 +151,7 @@ export const AddNote = ({ course }) => {
           contentEditable
           onPaste={(e) => handlePaste(e, 'front')}
         >paste image from clipboard</div>
+        <div>OR</div>
         <input
           onPaste={(e) => handlePaste(e, 'front')}
           type="file"
@@ -171,6 +178,7 @@ export const AddNote = ({ course }) => {
           contentEditable
           onPaste={(e) => handlePaste(e, 'back')}
         >paste image from clipboard</div>
+        <div>OR</div>
         <input
           type="file"
           accept="image/*"
@@ -181,12 +189,7 @@ export const AddNote = ({ course }) => {
       </div>
     </div>
 
-    {!message && <button
-      id="upload"
-      onClick={() => addNote()}>upload</button>}
 
-
-    {message && <button id="message">{message}</button>}
 
 
   </div>;

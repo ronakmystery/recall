@@ -1,35 +1,39 @@
- #app {
+#app {
+  margin: 20px;
+  position: relative;
+  max-width: 400px;
+}
+
+.selected-action {
+  background: var(--green);
+  color: white;
+}
+
+#home-button-link {
+  margin-bottom: 20px;
+
+}
+
+
+#courses-list{
   margin: 20px;
 }
-
-.selected-action{
-  background: var(--green);
-  color:white;
-}
-
-#home-button-link{
-  position: fixed;
-  top:0;right:0;margin: 20px;
-
-}
-
-
-.course-link{
+.course-link {
   background: var(--theme);
   display: block;
   margin-bottom: 20px;
 }
 
-.course-link a{
-  color:white;
+.course-link {
+  color: white;
 }
 
 
-#actions button{
-  margin:10px;
+#actions button {
+  margin: 10px;
 }
 
 
-#course-name{
+#course-name {
   text-transform: uppercase;
 }
