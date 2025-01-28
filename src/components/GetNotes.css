@@ -1,6 +1,4 @@
 #notes{
-
-    margin: 20px auto;
     position: relative;
     text-align: -webkit-center;
 
@@ -9,9 +7,8 @@
 
 
   .note-card {
-    margin: 20px;
-    width: calc(100% - 40px);
-    height: calc(100vh - 350px);
+    margin:20px 0 20px 0;
+    height: calc(100vh - 370px);
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.3s;
@@ -34,7 +31,10 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    box-shadow: var(--inset-shadow);
+    padding: 10px;
+    box-sizing: border-box;
   }
   
   .note-card-back {
@@ -47,5 +47,9 @@
   } 
 
   #card-actions button{
+    margin: 10px;
+  }
+
+  #card-remaining{
     margin: 10px;
   }

@@ -11,10 +11,15 @@
 }
 
 
+#upload{
+    position: absolute;
+    top:0;right: 0;
+}
 
 #message{
     display: block;
-    margin: 20px;
+    position: absolute;
+    top:0;right: 0;
 }
 
 .img-paste{

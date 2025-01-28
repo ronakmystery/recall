@@ -22,7 +22,9 @@ function Courses() {
 
 
 
-  return <div id="courses">
+  return <div id="course">
+
+<Link to={'/'}><button id="home-button-link">home</button></Link>
 
     <div id="course-name">    {course}
     </div>
@@ -36,7 +38,6 @@ function Courses() {
     </div>
 
     <div>  {actions[action]}</div>
-    <button id="home-button-link"><Link to={'/'}>home</Link></button>
   </div>;
 }
 
@@ -53,14 +54,14 @@ function Home() {
 
     
 Courses
-      <ul>
+      <div id="courses-list">
         {courses.map(course => (
-          <button
-            className='course-link'
-            key={course}><Link to={`/${course}`}>{course}</Link></button>
+          <Link to={`/${course}`}><button
+          className='course-link'
+          key={course}>{course}</button></Link>
         ))}
 
-      </ul>
+      </div>
 
 
 

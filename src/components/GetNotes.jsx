@@ -21,9 +21,19 @@ export const GetNotes = ({ course }) => {
     let fetchNotes = () => {
         firebaseGet(course).then(data => {
 
-            setNotes(data)
-            
-            setNote(data[0])
+
+
+            const sortedNotes = data.sort((a, b) => {
+                // Compare by `seconds` first, and then by `nanoseconds` if `seconds` are equal
+                if (a.created_at.seconds === b.created_at.seconds) {
+                    return b.created_at.nanoseconds - a.created_at.nanoseconds;
+                }
+                return b.created_at.seconds - a.created_at.seconds;
+            });
+
+            setNotes(sortedNotes)
+
+            setNote(sortedNotes[0])
         })
     }
 
@@ -94,7 +104,10 @@ export const GetNotes = ({ course }) => {
         {notes.length !== 0 &&
 
 
-            <> <div id="card-type">{!isFlipped ? 'PROBLEM' : 'SOLUTION'}</div>
+            <>
+                <div id="card-remaining">{completed.length+1} / {notes.length + completed.length}</div>
+
+                <div id="card-type">{!isFlipped ? 'PROBLEM' : 'SOLUTION'}</div>
 
 
 
@@ -135,7 +148,6 @@ export const GetNotes = ({ course }) => {
                         onClick={deleteNote}
                     >delete</button>
                 </div>
-                <div id="card-remaining">{completed.length}/{notes.length + completed.length}</div>
             </>
 
 
