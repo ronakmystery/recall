@@ -37,3 +37,12 @@
 #course-name {
   text-transform: uppercase;
 }
+
+#home{
+  position: relative;
+}
+
+#admin{
+  position: absolute;
+  top:0;right:0;
+}

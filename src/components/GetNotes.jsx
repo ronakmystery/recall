@@ -1,8 +1,9 @@
-import { firebaseGet } from '../firebase';
 import { useEffect, useState } from 'react';
 import './GetNotes.css'
 import { motion } from "framer-motion";
-import { firebaseDelete } from '../firebase';
+import { firebaseGet,firebaseDelete } from '../firebase';
+import { useGlobalState } from '../GlobalContext';
+
 
 
 export const GetNotes = ({ course }) => {
@@ -20,8 +21,6 @@ export const GetNotes = ({ course }) => {
 
     let fetchNotes = () => {
         firebaseGet(course).then(data => {
-
-
 
             const sortedNotes = data.sort((a, b) => {
                 // Compare by `seconds` first, and then by `nanoseconds` if `seconds` are equal
@@ -70,11 +69,12 @@ export const GetNotes = ({ course }) => {
         setNote(completed[0])
     }
 
+    const { user, setUser } = useGlobalState();
+
     let deleteNote = () => {
 
-        let userConfirmed = window.prompt("confirm with password");
-
-        if (userConfirmed == "3654") {
+        
+        if(user=='admin'&& confirm('delete?')){
             firebaseDelete(course, note?.id).then(() => {
                 setIsFlipped(false);
 
@@ -144,9 +144,10 @@ export const GetNotes = ({ course }) => {
                         onClick={next}
                     >next</button>
 
-                    <button id="card-delete-button"
+                    {user=='admin'&& <button id="card-delete-button"
                         onClick={deleteNote}
-                    >delete</button>
+                    >delete</button>}
+                   
                 </div>
             </>
 

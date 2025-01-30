@@ -69,9 +69,6 @@ export const AddNote = ({ course }) => {
         'backImgUrl': back.url,
         'frontImgFileName': front.filename,
         'frontImgUrl': front.url,
-        'reviews': {
-          '5': 1
-        }
       }
 
       const noteId = await addNoteToFirestore(note);

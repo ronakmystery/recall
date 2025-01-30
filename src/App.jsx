@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react';
 
 import { AddNote } from './components/AddNote';
 import { GetNotes } from './components/GetNotes';
+import { ShowAllNotes } from './components/ShowAllNotes';
+
+import { useGlobalState } from './GlobalContext';
 
 
 
@@ -13,16 +16,21 @@ import { GetNotes } from './components/GetNotes';
 function Courses() {
   const { course } = useParams();
 
-  const [action, setAction] = useState(['study notes'])
+  // const [action, setAction] = useState(['study notes'])
+    const [action, setAction] = useState(['study'])
+
 
   let actions = {
-    'study notes': <GetNotes course={course} />,
+    'study': <GetNotes course={course} />,
+    'all notes': <ShowAllNotes course={course} />,
     'add note': <AddNote course={course} />,
+    
   }
 
 
 
   return <div id="course">
+
 
 <Link to={'/'}><button id="home-button-link">home</button></Link>
 
@@ -46,12 +54,21 @@ function Courses() {
 function Home() {
 
   let courses = ["formal-languages", "algorithms"]
+
+  const { user, setUser } = useGlobalState();
+
+
+
+  const handleLogin = () => {
+    const password = prompt('password:');
+    if (password=='3654') {
+      localStorage.setItem('user', JSON.stringify('admin'));
+      setUser('admin')
+    }
+  };
   
 
   return <div id="home">
-
- 
-
     
 Courses
       <div id="courses-list">
@@ -69,6 +86,16 @@ Courses
    <br/> 
    <br/>
    Designed and developed by Ronak Mistry.
+
+
+   <div id='admin'>{user=='admin' ? (
+        <div>ADMIN</div>
+      ) : (
+        <button onClick={handleLogin}>admin</button>
+      )}</div>
+
+
+      
   </div>;
 }
 
@@ -77,6 +104,9 @@ Courses
 
 function App() {
 
+
+
+  
 
 
   return (

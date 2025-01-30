@@ -53,3 +53,6 @@
   #card-remaining{
     margin: 10px;
   }
+  #card-delete-button{
+    display: block;
+  }
