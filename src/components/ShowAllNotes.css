@@ -1,0 +1,25 @@
+#all-notes{
+
+    .note{
+        margin: 20px;
+        box-shadow: var(--shadow);
+        border-radius: 10px;
+        width: fit-content;
+        padding: 10px;
+    }
+    
+    .note-imgs{
+        position: relative;
+        display: flex;
+    }
+    .note-imgs div{
+        display: inline-block;
+        margin: 10px;
+    }
+    .note-imgs div img{
+        height: 100px;
+    }
+    
+    
+
+}
