@@ -20,8 +20,6 @@ export const ShowAllNotes = ({ course }) => {
 
         firebaseGet(course).then(data => {
 
-            console.log(data)
-
             const sortedNotes = data.sort((a, b) => {
                 // Compare by `seconds` first, and then by `nanoseconds` if `seconds` are equal
                 if (a.created_at.seconds === b.created_at.seconds) {

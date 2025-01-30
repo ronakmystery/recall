@@ -53,7 +53,7 @@ function Courses() {
 
 function Home() {
 
-  let courses = ["formal-languages", "algorithms"]
+  let courses = ["formal-languages", "algorithms","examples"]
 
   const { user, setUser } = useGlobalState();
 
