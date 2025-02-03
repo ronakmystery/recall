@@ -24,6 +24,9 @@
     }
     .note-imgs div img{
         height: 100px;
+        box-shadow: var(--shadow);
+        margin: 20px;
+        border-radius: 5px;
     }
     
     

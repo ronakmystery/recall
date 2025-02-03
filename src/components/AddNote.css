@@ -11,7 +11,9 @@
     max-height: 200px;
     max-width: 90%;
     display: block;
-    border: 2px solid black;
+    box-shadow: var(--shadow);
+    margin: 20px;
+    border-radius: 5px;
 }
 
 
