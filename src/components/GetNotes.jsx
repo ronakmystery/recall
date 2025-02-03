@@ -99,7 +99,7 @@ export const GetNotes = ({ course }) => {
         {notes.length == 0 && completed.length > 0 && <div>
             <button id="reset-button"
                 onClick={reset}
-            >reset</button></div>}
+            >study again</button></div>}
 
         {notes.length !== 0 &&
 
@@ -142,7 +142,7 @@ export const GetNotes = ({ course }) => {
 
                     <button id="card-next-button"
                         onClick={next}
-                    >next</button>
+                    >done</button>
 
                     {user=='admin'&& <button id="card-delete-button"
                         onClick={deleteNote}
@@ -158,12 +158,7 @@ export const GetNotes = ({ course }) => {
 
         }
 
-        {
-
-            notes.length == 0 && <div id="notes">no notes</div>
-
-        }
-
+    
 
 
 

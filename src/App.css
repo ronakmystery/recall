@@ -5,8 +5,7 @@
 }
 
 .selected-action {
-  background: var(--green);
-  color: white;
+  box-shadow: var(--inset-shadow);
 }
 
 #home-button-link {
