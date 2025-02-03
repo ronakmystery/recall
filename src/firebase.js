@@ -24,6 +24,38 @@ const db = getFirestore(app);
 const storage = getStorage();
 
 
+
+export async function addCourseToFireStore(course) {
+  try {
+      const docRef = await addDoc(collection(db, "courses"), course);
+      console.log("Course added with ID: ", docRef.id);
+      return docRef.id;
+  } catch (e) {
+      console.error("Error adding course: ", e);
+  }
+}
+
+export async function getCoursesFromFireStore() {
+  const coursesCollection = collection(db, "courses/"); // Reference the "courses" collection
+
+  try {
+    const querySnapshot = await getDocs(coursesCollection); // Fetch all documents
+
+    const courses = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return courses
+  } catch (error) {
+    console.log(error)
+
+  }
+
+}
+
+
+
 export async function firebaseGet(course) {
   const notesCollection = collection(db, `courses/${course}/notes`);
 

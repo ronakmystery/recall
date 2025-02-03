@@ -160,6 +160,8 @@ export const AddNote = ({ course }) => {
         />
       </div>
 
+        <hr/>
+        
       {/* Back Side */}
       <div className="add-note-card-back">
         <h2>Solution</h2>

@@ -1,18 +1,19 @@
 #add-note{
-    text-align: -webkit-center;
     overflow: scroll;
     box-shadow: var(--inset-shadow);
     height: calc(100vh - 220px);
     border-radius: 10px;
     margin-top: 10px;
-
+    padding: 0 20px 20px 20px;
 }
 
 #add-note img{
     max-height: 200px;
-    max-width: 100%;
+    max-width: 90%;
     display: block;
-    border: 2px solid black;
+    box-shadow: var(--shadow);
+    margin: 20px;
+    border-radius: 5px;
 }
 
 
@@ -36,3 +37,6 @@
     border-radius: 5px;
 }
 
+hr{
+    border:2px solid var(--theme);
+}

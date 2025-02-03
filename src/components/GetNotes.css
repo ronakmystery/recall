@@ -44,6 +44,8 @@
   
   .note-card img {
     max-width: 100%;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
   } 
 
   #card-actions button{
