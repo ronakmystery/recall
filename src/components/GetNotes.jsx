@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './GetNotes.css'
 import { motion } from "framer-motion";
-import { firebaseGet,firebaseDelete } from '../firebase';
+import { firebaseGet, firebaseDelete } from '../firebase';
 import { useGlobalState } from '../GlobalContext';
 
 
@@ -70,17 +70,20 @@ export const GetNotes = ({ course }) => {
     }
 
     const { user, setUser } = useGlobalState();
+    const [message, setMessage] = useState(null)
 
     let deleteNote = () => {
 
-        
-        if(user=='admin'&& confirm('delete?')){
+        if (user == 'admin' && confirm('delete?')) {
+            setMessage('DELETING...')
             firebaseDelete(course, note?.id).then(() => {
                 setIsFlipped(false);
 
                 const [item, ...items] = notes;
                 setNotes(items);
                 setNote(items[0])
+                setMessage(null)
+
             })
         }
 
@@ -105,7 +108,7 @@ export const GetNotes = ({ course }) => {
 
 
             <>
-                <div id="card-remaining">{completed.length+1} / {notes.length + completed.length}</div>
+                <div id="card-remaining">{completed.length + 1} / {notes.length + completed.length}</div>
 
                 <div id="card-type">{!isFlipped ? 'PROBLEM' : 'SOLUTION'}</div>
 
@@ -144,10 +147,12 @@ export const GetNotes = ({ course }) => {
                         onClick={next}
                     >done</button>
 
-                    {user=='admin'&& <button id="card-delete-button"
-                        onClick={deleteNote}
+                    {user == 'admin' && !message && <button id="card-delete-button"
+                        onClick={() => { deleteNote() }}
                     >delete</button>}
-                   
+                    {user == 'admin' && message && <div>{message}</div>}
+
+
                 </div>
             </>
 
@@ -158,7 +163,7 @@ export const GetNotes = ({ course }) => {
 
         }
 
-    
+
 
 
 

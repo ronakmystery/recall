@@ -9,6 +9,10 @@ export const ShowAllNotes = ({ course }) => {
 
     const [notes, setNotes] = useState([]);
 
+    const [message, setMessage] = useState(null)
+
+
+
     useEffect(() => {
 
         fetchNotes()
@@ -34,14 +38,16 @@ export const ShowAllNotes = ({ course }) => {
     }
 
     const { user, setUser } = useGlobalState();
-    
+
     let deleteNote = (id) => {
 
 
-        if(user=='admin'&& confirm('delete?')){
+        if (user == 'admin' && confirm('delete?')) {
+            setMessage('deleting...')
             firebaseDelete(course, id).then(() => {
                 const [item, ...items] = notes;
                 setNotes(items);
+                setMessage(null)
             })
         }
 
@@ -61,7 +67,7 @@ export const ShowAllNotes = ({ course }) => {
 
 
                         <div><img
-                                src={x.frontImgUrl} alt="Front Preview" /></div>
+                            src={x.frontImgUrl} alt="Front Preview" /></div>
 
 
                         <div><img
@@ -69,10 +75,11 @@ export const ShowAllNotes = ({ course }) => {
 
                     </div>
 
-                {user=='admin'&&<button id="card-delete-button"
+                    {user == 'admin' && !message && <button id="card-delete-button"
                         onClick={() => { deleteNote(x.id) }}
                     >delete</button>}
-                    
+                    {user == 'admin' && message && <div>{message}</div>}
+
                 </div>)
 
         }</div>
