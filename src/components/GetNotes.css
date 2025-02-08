@@ -11,7 +11,7 @@
     height: calc(100vh - 320px);
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.3s;
+    transition: transform 1s;
   }
   
   .note-card.flipped {
@@ -34,7 +34,6 @@
     padding: 10px;
     box-sizing: border-box;
   }
-  
   
   .note-card-back {
     transform: rotateY(180deg);

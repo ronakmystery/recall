@@ -1,5 +1,6 @@
 import { addNoteToFirestore, uploadImage } from '../firebase';
 import { useState } from 'react';
+import { useGlobalState } from '../GlobalContext';
 import './AddNote.css'
 
 
@@ -120,10 +121,12 @@ export const AddNote = ({ course }) => {
     }
   };
 
+    const { user, setUser } = useGlobalState();
+
 
   return <div id="add-note">
 
-    {!message && <button
+    {user=='admin' && !message && <button
       id="upload"
       onClick={() => addNote()}>upload</button>}
 

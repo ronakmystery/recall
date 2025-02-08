@@ -58,7 +58,10 @@ export const ShowAllNotes = ({ course }) => {
 
     return <>
 
-        <div id="all-notes">{
+        <div id="all-notes">
+            
+            {notes.length==0&&<div id='no-notes'>No notes...</div>}
+            {
             notes.map(x =>
 
                 <div className="note" key={x.id}>
@@ -78,6 +81,7 @@ export const ShowAllNotes = ({ course }) => {
 
                         <img
                             loading='lazy'
+                            className='solution'
 
                             src={x.backImgUrl} alt="Back Preview" />
                     </div>

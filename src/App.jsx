@@ -9,20 +9,22 @@ import { ShowAllNotes } from './components/ShowAllNotes';
 
 import { useGlobalState } from './GlobalContext';
 
-import {  addCourseToFireStore, getCoursesFromFireStore } from './firebase';
+import { addCourseToFireStore, getCoursesFromFireStore } from './firebase';
+import { ShowNote } from './components/ShowNote';
 
 
 
 
 function Courses() {
   const { course } = useParams();
-  
+
 
   const [action, setAction] = useState(['study'])
 
 
   let actions = {
-    'study': <GetNotes course={course} />,
+    // 'study': <GetNotes course={course} />,
+    'study': <ShowNote course={course} />,
     'all notes': <ShowAllNotes course={course} />,
     'new note': <AddNote course={course} />,
 
@@ -35,7 +37,7 @@ function Courses() {
 
     <Link to={'/'}><button id="home-button-link">home</button></Link>
 
-    
+
     <div id="actions">
       {
         Object.keys(actions).map((x) => <button
@@ -106,8 +108,8 @@ function Home() {
           className='course-link'
         >{course.name}</button></Link>
       ))}
-
-      <button onClick={addCourse}>add course</button>
+      {user == 'admin' && <button onClick={addCourse}>add course</button>
+      }
 
     </div>
 

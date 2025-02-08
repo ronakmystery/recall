@@ -29,6 +29,7 @@ html, body {
 
 html {
   font-size: 100%;
+  user-select: none;
 }
 
 body {
