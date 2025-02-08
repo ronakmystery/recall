@@ -135,7 +135,7 @@ export const AddNote = ({ course }) => {
     <div
     >
       {/* Front Side */}
-      <div className="add-note-card-front">
+      <div className="add-note add-note-card-front">
         <h2>Problem</h2>
         {frontImage ? (
           <img src={frontImage} alt="Front Preview" />
@@ -143,12 +143,12 @@ export const AddNote = ({ course }) => {
           <p
           >?</p>
         )}
-        <div
+        {/* <div
           className="img-paste"
           contentEditable
           onPaste={(e) => handlePaste(e, 'front')}
         >paste image from clipboard</div>
-        <div>OR</div>
+        <div>OR</div> */}
         <input
           onPaste={(e) => handlePaste(e, 'front')}
           type="file"
@@ -163,7 +163,7 @@ export const AddNote = ({ course }) => {
         <hr/>
         
       {/* Back Side */}
-      <div className="add-note-card-back">
+      <div className="add-note add-note-card-back">
         <h2>Solution</h2>
         {backImage ? (
           <img src={backImage} alt="Back Preview" />
@@ -172,12 +172,12 @@ export const AddNote = ({ course }) => {
 
           >?</p>
         )}
-        <div
+        {/* <div
           className="img-paste"
           contentEditable
           onPaste={(e) => handlePaste(e, 'back')}
         >paste image from clipboard</div>
-        <div>OR</div>
+        <div>OR</div> */}
         <input
           type="file"
           accept="image/*"

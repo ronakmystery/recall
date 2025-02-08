@@ -22,6 +22,11 @@
   display: none;
 }
 
+html, body {
+  overscroll-behavior: none;
+}
+
+
 html {
   font-size: 100%;
 }

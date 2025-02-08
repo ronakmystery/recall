@@ -63,22 +63,28 @@ export const ShowAllNotes = ({ course }) => {
 
                 <div className="note" key={x.id}>
 
-                    <div className='note-imgs'>
-
-
-                        <div><img
-                            src={x.frontImgUrl} alt="Front Preview" /></div>
-
-
-                        <div><img
-                            src={x.backImgUrl} alt="Back Preview" /></div>
-
-                    </div>
 
                     {user == 'admin' && !message && <button id="card-delete-button"
                         onClick={() => { deleteNote(x.id) }}
                     >delete</button>}
                     {user == 'admin' && message && <div>{message}</div>}
+
+                    <div className='images'>
+
+                        <img
+                            loading='lazy'
+                            src={x.frontImgUrl} alt="Front Preview" />
+
+
+                        <img
+                            loading='lazy'
+
+                            src={x.backImgUrl} alt="Back Preview" />
+                    </div>
+
+
+
+
 
                 </div>)
 
