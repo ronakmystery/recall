@@ -8,7 +8,7 @@
 
   .note-card {
     margin:20px 0 20px 0;
-    height: calc(100vh - 400px);
+    height: calc(100vh - 320px);
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.3s;
@@ -28,24 +28,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #fff;
 
     box-shadow: var(--inset-shadow);
     padding: 10px;
     box-sizing: border-box;
   }
   
+  
   .note-card-back {
     transform: rotateY(180deg);
-    background-color: #f9f9f9;
   }
   
   .note-card img {
     max-width: 100%;
     box-shadow: var(--shadow);
     border-radius: 5px;
+    margin-bottom: 5px;
+    position: relative;
   } 
 
   #card-actions button{

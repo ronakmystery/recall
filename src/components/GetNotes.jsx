@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './GetNotes.css'
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useMotionValueEvent } from "framer-motion";
 import { firebaseGet, firebaseDelete } from '../firebase';
 import { useGlobalState } from '../GlobalContext';
 
@@ -42,14 +42,25 @@ export const GetNotes = ({ course }) => {
         setIsFlipped(!isFlipped);
     };
 
+    const [currentNote, setCurrentNote] = useState(0)
+
+    let prev = () => {
+        setIsFlipped(false);
+        let note = currentNote - 1
+        if (note < 0) {
+            note = notes.length - 1
+        }
+        setNote(notes[note])
+        setCurrentNote(note)
+    }
     let next = () => {
         setIsFlipped(false);
-
-        const [item, ...items] = notes;
-
-        setNotes(items);
-        setCompleted((prev) => [...prev, item]);
-        setNote(items[0])
+        let note = currentNote + 1
+        if (note == notes.length) {
+            note = 0
+        }
+        setNote(notes[note])
+        setCurrentNote(note)
     }
 
     let skip = () => {
@@ -89,6 +100,26 @@ export const GetNotes = ({ course }) => {
 
 
 
+
+
+    }
+
+
+    const x = useMotionValue(0)
+    const opacity = useTransform(x, [-100, 0, 100], [0, 1, 0])
+    const rotate = useTransform(x, [-100, 100], [-10,10])
+
+    
+
+    const handleDrag = () => {
+        let val = x.get()
+        if (val < 50) {
+            next()
+        }
+        
+        if (val > -50) {
+            prev()
+        }
     }
 
     return <motion.div
@@ -108,7 +139,7 @@ export const GetNotes = ({ course }) => {
 
 
             <>
-                <div id="card-remaining">{completed.length + 1} / {notes.length + completed.length}</div>
+                <div id="card-remaining">{currentNote + 1} / {notes.length}</div>
 
                 <div id="card-type">{!isFlipped ? 'PROBLEM' : 'SOLUTION'}</div>
 
@@ -121,22 +152,37 @@ export const GetNotes = ({ course }) => {
 
                     {/* Front Side */}
                     {!isFlipped && <div className="note-card-front">
-                        <img src={note?.frontImgUrl} alt="Front Preview" />
+                        <motion.img
+                            onClick={() => { setIsFlipped(!isFlipped) }}
+                            style={{ x, opacity,rotate }}
+
+                            drag="x"
+                            onDragEnd={handleDrag}
+                            dragConstraints={{
+                                left: 0, right: 0
+                            }}
+
+                            src={note?.frontImgUrl} alt="Front Preview" />
                     </div>}
 
 
                     {/* Back Side */}
-                    {isFlipped && <div className="note-card-back">
-                        <img src={note?.backImgUrl} alt="Back Preview" />
+                    {isFlipped && <div className="note-card-back"
+                        onClick={() => { setIsFlipped(!isFlipped) }}
+
+                    >
+                        <img src={note?.backImgUrl} alt="Back solution Preview" />
+                        <img src={note?.frontImgUrl} alt="Back problem Preview" />
+
                     </div>}
                 </div>
 
                 <div id="card-actions">
 
 
-                    {notes.length > 1 && <button id="card-skip-button"
-                        onClick={skip}
-                    >skip</button>}
+                    {/* {notes.length > 1 && <button id="card-skip-button"
+                        onClick={prev}
+                    >prev</button>}
 
 
                     <button id="card-flip-button"
@@ -145,7 +191,7 @@ export const GetNotes = ({ course }) => {
 
                     <button id="card-next-button"
                         onClick={next}
-                    >done</button>
+                    >next</button> */}
 
                     {user == 'admin' && !message && <button id="card-delete-button"
                         onClick={() => { deleteNote() }}
