@@ -106,27 +106,24 @@ export const GetNotes = ({ course }) => {
 
 
     const x = useMotionValue(0)
-    const opacity = useTransform(x, [-100, 0, 100], [0, 1, 0])
-    const rotate = useTransform(x, [-100, 100], [-10,10])
+    const opacity = useTransform(x, [-200, 0, 200], [0, 1, 0])
+    const rotate = useTransform(x, [-100, 100], [-10, 10])
 
-    
+
 
     const handleDrag = () => {
         let val = x.get()
         if (val < 50) {
             next()
         }
-        
+
         if (val > -50) {
             prev()
         }
     }
 
-    return <motion.div
+    return <div
         id="notes"
-        initial={{ opacity: 0 }} // Start invisible
-        animate={{ opacity: 1 }} // Fade in to fully visible
-        transition={{ duration: .3 }} // Animation duration
     >
 
 
@@ -154,10 +151,13 @@ export const GetNotes = ({ course }) => {
                     {!isFlipped && <div className="note-card-front">
                         <motion.img
                             onClick={() => { setIsFlipped(!isFlipped) }}
-                            style={{ x, opacity,rotate }}
+                            style={{ x, opacity, rotate }}
 
                             drag="x"
                             onDragEnd={handleDrag}
+
+
+
                             dragConstraints={{
                                 left: 0, right: 0
                             }}
@@ -171,8 +171,17 @@ export const GetNotes = ({ course }) => {
                         onClick={() => { setIsFlipped(!isFlipped) }}
 
                     >
-                        <img src={note?.backImgUrl} alt="Back solution Preview" />
-                        <img src={note?.frontImgUrl} alt="Back problem Preview" />
+                        <motion.div onClick={() => { setIsFlipped(!isFlipped) }}
+                            style={{ x, opacity, rotate }}
+
+                            drag="x"
+                            onDragEnd={handleDrag}
+                            dragElastic={.7}
+                            dragConstraints={{
+                                left: 0, right: 0
+                            }}><img src={note?.backImgUrl} alt="Back solution Preview" />
+                            <img src={note?.frontImgUrl} alt="Back problem Preview" /></motion.div>
+
 
                     </div>}
                 </div>
@@ -214,5 +223,5 @@ export const GetNotes = ({ course }) => {
 
 
 
-    </motion.div>;
+    </div>;
 }

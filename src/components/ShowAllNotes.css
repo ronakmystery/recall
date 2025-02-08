@@ -29,7 +29,9 @@
             box-shadow: var(--inset-shadow);
             border-radius: 10px;
             margin: 10px 0 10px 0;
-            
+            .solution{
+                border-bottom: 20px solid var(--green);
+            }
         }
     }
     

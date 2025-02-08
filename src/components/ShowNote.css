@@ -1,0 +1,40 @@
+#note {
+    text-align: -webkit-center;
+
+    .note {
+        overflow: scroll;
+        margin-top: 10px;
+        height: calc(100vh - 300px);
+        border-radius: 10px;
+
+
+        .images {
+            img {
+                width: 100%;
+                box-shadow: var(--shadow);
+                border-radius: 5px;
+
+            }
+
+            .solution {
+                border-bottom: 20px solid var(--green);
+                margin-bottom: 10px;
+            }
+
+        }
+
+        box-shadow: var(--inset-shadow);
+        padding: 10px;
+
+    }
+
+    .actions {
+        button {
+            margin: 10px;
+        }
+    }
+    #card-delete-button,#message{
+        position: absolute;
+        top:0;right:0;
+    }
+}
