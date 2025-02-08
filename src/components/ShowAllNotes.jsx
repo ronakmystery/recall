@@ -70,7 +70,7 @@ export const ShowAllNotes = ({ course }) => {
                     {user == 'admin' && !message && <button id="card-delete-button"
                         onClick={() => { deleteNote(x.id) }}
                     >delete</button>}
-                    {user == 'admin' && message && <div>{message}</div>}
+                    {user == 'admin' && message && <button id="message-button">{message}</button>}
 
                     <div className='images'>
 

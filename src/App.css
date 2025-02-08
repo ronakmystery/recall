@@ -49,3 +49,7 @@
 #no-notes{
   margin: 20px;
 }
+
+#message{
+  box-shadow: var(--inset-shadow);
+}

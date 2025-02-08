@@ -66,10 +66,7 @@ button {
   transition: .3s;
 }
 button:active {
-  transform: scale(0.9);
-  box-shadow: none;
-  background: var(--green);
-  color: white;
+  box-shadow: var(--inset-shadow);
 }
 
 a {
