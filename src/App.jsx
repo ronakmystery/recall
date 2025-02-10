@@ -35,7 +35,7 @@ function Courses() {
   return <div id="course">
 
 
-    <Link to={'/'}><button id="home-button-link">home</button></Link>
+    <Link to={'/'}><button id="home-button-link">courses</button></Link>
 
 
     <div id="actions">

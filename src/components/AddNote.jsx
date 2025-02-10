@@ -14,8 +14,20 @@ export const AddNote = ({ course }) => {
 
   const [message, setMessage] = useState(null)
 
+  function getDeviceType() {
+    const ua = navigator.userAgent;
+    if (/Mobi|Android|iPhone|iPad/i.test(ua)) {
+      return "phone";
+    } else if (/Tablet|iPad/i.test(ua)) {
+      return "tablet";
+    } else {
+      return "computer";
+    }
+  }
+
 
   const handleImageChange = (e, side) => {
+    
 
     const file = e.target.files[0];
     const maxSize = 7 * 1024 * 1024; // 7 MB
@@ -94,7 +106,7 @@ export const AddNote = ({ course }) => {
   const handlePaste = (event, side) => {
 
     setTimeout(() => {
-      event.target.innerHTML = "paste image here from clipboard";
+      event.target.innerHTML = "paste image here";
     }, 100);
 
     const clipboardItems = event.clipboardData.items;
@@ -121,12 +133,12 @@ export const AddNote = ({ course }) => {
     }
   };
 
-    const { user, setUser } = useGlobalState();
+  const { user, setUser } = useGlobalState();
 
 
   return <div id="add-note">
 
-    {user=='admin' && !message && <button
+    {user == 'admin' && !message && <button
       id="upload"
       onClick={() => addNote()}>upload</button>}
 
@@ -146,25 +158,29 @@ export const AddNote = ({ course }) => {
           <p
           >?</p>
         )}
-        {/* <div
-          className="img-paste"
-          contentEditable
-          onPaste={(e) => handlePaste(e, 'front')}
-        >paste image from clipboard</div>
-        <div>OR</div> */}
-        <input
-          onPaste={(e) => handlePaste(e, 'front')}
-          type="file"
-          accept="image/*"
-          // capture="environment" required
-          onChange={(e) => handleImageChange(e, 'front')}
-          onClick={(e) => e.stopPropagation()} // Prevent parent click
 
-        />
+        {
+          getDeviceType() == 'computer' ? <div
+            className="img-paste"
+            contentEditable
+            onPaste={(e) => handlePaste(e, 'front')}
+          >paste image here</div> : <input
+            onPaste={(e) => handlePaste(e, 'front')}
+            type="file"
+            accept="image/*"
+            // capture="environment" required
+            onChange={(e) => handleImageChange(e, 'front')}
+            onClick={(e) => e.stopPropagation()} // Prevent parent click
+
+          />
+
+        }
+
+
       </div>
 
-        <hr/>
-        
+      <hr />
+
       {/* Back Side */}
       <div className="add-note add-note-card-back">
         <h2>Solution</h2>
@@ -175,19 +191,23 @@ export const AddNote = ({ course }) => {
 
           >?</p>
         )}
-        {/* <div
-          className="img-paste"
-          contentEditable
-          onPaste={(e) => handlePaste(e, 'back')}
-        >paste image from clipboard</div>
-        <div>OR</div> */}
-        <input
-          type="file"
-          accept="image/*"
-          // capture="environment" required
-          onChange={(e) => handleImageChange(e, 'back')}
-          onClick={(e) => e.stopPropagation()} // Prevent parent click
-        />
+
+        {
+          getDeviceType() == 'computer' ? <div
+            className="img-paste"
+            contentEditable
+            onPaste={(e) => handlePaste(e, 'back')}
+          >paste image here</div> : <input
+            type="file"
+            accept="image/*"
+            // capture="environment" required
+            onChange={(e) => handleImageChange(e, 'back')}
+            onClick={(e) => e.stopPropagation()} // Prevent parent click
+          />
+
+        }
+
+
       </div>
     </div>
 

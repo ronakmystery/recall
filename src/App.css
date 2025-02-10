@@ -27,7 +27,9 @@
   color: white;
 }
 
-
+#actions{
+  text-align: -webkit-center;
+}
 #actions button {
   margin: 10px;
 }

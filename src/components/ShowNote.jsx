@@ -152,7 +152,7 @@ export const ShowNote = ({ course }) => {
 
                     <button id="card-flip-button"
                         onClick={() => { setNoteState(!noteState) }}
-                    >{noteState ? 'see problem' : 'see solution'}</button>
+                    >{noteState ? 'problem' : 'solution'}</button>
 
                     {notes.length > 1 && <button
                         onClick={next}
