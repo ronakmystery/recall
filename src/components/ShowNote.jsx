@@ -12,6 +12,7 @@ export const ShowNote = ({ course }) => {
 
     const [note, setNote] = useState(null)
 
+
     useEffect(() => {
 
         fetchNotes()
@@ -88,6 +89,9 @@ export const ShowNote = ({ course }) => {
                 setNote(items[0])
                 setMessage(null)
 
+                fetchNotes()
+                setCurrentNote(0)
+
             })
         }
 
@@ -108,7 +112,7 @@ export const ShowNote = ({ course }) => {
 
 
             <>
-                <div id="card-remaining">{currentNote + 1} / {notes.length}</div>
+                <div id="cards-remaining">{currentNote + 1} / {notes.length}</div>
 
 
                 {user == 'admin' && !message && <button id="card-delete-button"

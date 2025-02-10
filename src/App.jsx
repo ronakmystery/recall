@@ -20,6 +20,7 @@ function Courses() {
 
 
   const [action, setAction] = useState(['study'])
+  const { courses, setCourses } = useGlobalState();
 
 
   let actions = {
@@ -34,7 +35,7 @@ function Courses() {
 
   return <div id="course">
 
-
+  
     <Link to={'/'}><button id="home-button-link">courses</button></Link>
 
 
@@ -47,7 +48,15 @@ function Courses() {
       }
     </div>
 
+    <div id='course-name'>
+    {courses?.find(c=>c?.id==course)?.name}
+    </div>
+
+
     <div>  {actions[action]}</div>
+
+
+    
   </div>;
 }
 
@@ -55,20 +64,9 @@ function Courses() {
 
 function Home() {
 
-  const [courses, setCourses] = useState([])
+  const { courses, setCourses } = useGlobalState();
 
-  useEffect(() => {
-
-    getCourses()
-
-
-  }, [])
-
-  let getCourses = () => {
-    getCoursesFromFireStore().then(data => {
-      setCourses(data)
-    })
-  }
+  
 
   const { user, setUser } = useGlobalState();
 
@@ -137,9 +135,21 @@ function Home() {
 
 function App() {
 
+  const { courses, setCourses } = useGlobalState();
 
 
+  useEffect(() => {
 
+    getCourses()
+
+
+  }, [])
+
+  let getCourses = () => {
+    getCoursesFromFireStore().then(data => {
+      setCourses(data)
+    })
+  }
 
 
   return (

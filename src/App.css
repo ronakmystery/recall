@@ -14,9 +14,10 @@
 }
 
 
-#courses-list{
+#courses-list {
   margin: 20px;
 }
+
 .course-link {
   background: var(--theme);
   display: block;
@@ -27,11 +28,8 @@
   color: white;
 }
 
-#actions{
-  text-align: -webkit-center;
-}
 #actions button {
-  margin: 10px;
+  margin-right: 20px;
 }
 
 
@@ -39,19 +37,25 @@
   text-transform: uppercase;
 }
 
-#home{
+#home {
   position: relative;
 }
 
-#admin{
+#admin {
   position: absolute;
-  top:0;right:0;
+  top: 0;
+  right: 0;
 }
 
-#no-notes{
+#no-notes {
   margin: 20px;
 }
 
-#message{
+#message {
   box-shadow: var(--inset-shadow);
+}
+
+#course-name {
+  text-transform: uppercase;
+  margin:10px 0 10px 0;
 }
