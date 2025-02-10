@@ -1,4 +1,4 @@
-#all-notes{
+#all-notes {
 
     overflow: scroll;
     box-shadow: var(--inset-shadow);
@@ -8,39 +8,50 @@
 
     display: flex;
 
-    .note{
+    .note {
         margin: 10px;
         box-shadow: var(--shadow);
         border-radius: 10px;
         width: fit-content;
+        min-width: calc((100vw - 120px));
         padding: 10px;
 
-        img{
+        img {
             display: block;
-            max-width: 220px;
+            width: calc(100% - 20px);
             box-shadow: var(--shadow);
             margin: 10px;
             border-radius: 5px;
         }
-        
-        .images{
+
+        .images {
             overflow: scroll;
             height: calc(100% - 40px);
             box-shadow: var(--inset-shadow);
             border-radius: 10px;
-            margin: 10px 0 10px 0;
-            .solution{
+
+            .solution {
                 border-bottom: 20px solid var(--green);
+            }
+
+            button {
+                margin: 0 10px 0 10px;
             }
         }
 
-        #message-button{
+        #card-delete-button {
+            margin: 10px 0;
+
+        }
+
+        #message-button {
+            margin: 10px 0;
             box-shadow: var(--inset-shadow);
         }
     }
-    
-    
-    
-    
+
+
+
+
 
 }

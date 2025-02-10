@@ -117,7 +117,7 @@ export const ShowNote = ({ course }) => {
 
                 {user == 'admin' && !message && <button id="card-delete-button"
                     onClick={() => { deleteNote() }}
-                >delete</button>}
+                >delete note</button>}
                 {user == 'admin' && message && <button id="message">{message}</button>}
 
                 <div
@@ -136,12 +136,11 @@ export const ShowNote = ({ course }) => {
                         }
 
                         {
-                            note && !noteState&&<><img style={{ display: 'none' }}
-                                src={note?.backImgUrl} alt="preload" />
+                            note && !noteState&&
                                 <motion.img 
                                   initial={{ opacity: 0, y: 50 }}
                                   animate={{ opacity: 1, y: 0 }}
-                                src={note?.frontImgUrl} alt="problem" /></>
+                                src={note?.frontImgUrl} alt="problem" />
                         }
 
                     </div>

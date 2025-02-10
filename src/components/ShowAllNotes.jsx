@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { firebaseGet, firebaseDelete } from '../firebase';
 import './ShowAllNotes.css'
 import { useGlobalState } from '../GlobalContext';
+import { motion } from "framer-motion";
 
 
 export const ShowAllNotes = ({ course }) => {
@@ -55,44 +56,56 @@ export const ShowAllNotes = ({ course }) => {
 
     }
 
+    const [visibleNotes, setVisibleNotes] = useState({});
+
+    const toggleNote = (id) => {
+        setVisibleNotes((prev) => ({ ...prev, [id]: !prev[id] }));
+    };
+
 
     return <>
 
         <div id="all-notes">
-            
-            {notes.length==0&&<div id='no-notes'>No notes...</div>}
+
+            {notes.length == 0 && <div id='no-notes'>No notes...</div>}
             {
-            notes.map(x =>
+                notes.map(x =>
 
-                <div className="note" key={x.id}>
-
-
-                    {user == 'admin' && !message && <button id="card-delete-button"
-                        onClick={() => { deleteNote(x.id) }}
-                    >delete</button>}
-                    {user == 'admin' && message && <button id="message-button">{message}</button>}
-
-                    <div className='images'>
-
-                        <img
-                            loading='lazy'
-                            src={x.frontImgUrl} alt="Front Preview" />
-
-
-                        <img
-                            loading='lazy'
-                            className='solution'
-
-                            src={x.backImgUrl} alt="Back Preview" />
-                    </div>
+                    <div className="note" key={x.id}>
 
 
 
+                        <div className='images'>
+
+                            <img
+                                loading='lazy'
+                                src={x.frontImgUrl} alt="Front Preview" />
+
+                            {!visibleNotes[x.id] && (<button onClick={() => { toggleNote(x.id) }}>solution</button>
+                            )}
+
+                            {visibleNotes[x.id] && (
+                                <motion.img
+                                    src={x.backImgUrl}
+                                    className="solution"
+                                    initial={{ opacity: 0, y: 50 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                />
+                            )}
+
+                        </div>
+                        {user == 'admin' && !message && <button id="card-delete-button"
+                            onClick={() => { deleteNote(x.id) }}
+                        >delete note</button>}
+                        {user == 'admin' && message && <button id="message-button">{message}</button>}
 
 
-                </div>)
 
-        }</div>
+
+
+                    </div>)
+
+            }</div>
 
     </>
 

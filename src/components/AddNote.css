@@ -8,16 +8,39 @@
 }
 
 .add-note{
-    margin: 20px;
+    margin: 10px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+    div{
+        text-align: left;
+        font-size: 20px;
+    }
+    .img-paste{
+        font-size: 15px;
+        width: calc(100% - 40px);
+        margin: 20px auto;
+        box-sizing: border-box;
+        transition: .3s;
+    }
+    .img-paste:focus-visible{
+        outline:none;
+        border: 3px solid var(--green);
+    }
 }
 
 #add-note img{
     max-height: 200px;
-    max-width: 90%;
+    max-width: 100%;
+    margin: 10px auto;
     display: block;
     box-shadow: var(--shadow);
-    margin: 20px;
     border-radius: 5px;
+}
+.add-note-card-back{
+    border-bottom: 20px solid var(--green);
 }
 
 
@@ -41,6 +64,3 @@
     border-radius: 5px;
 }
 
-hr{
-    border:5px solid var(--theme);
-}

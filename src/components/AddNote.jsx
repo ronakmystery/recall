@@ -151,7 +151,7 @@ export const AddNote = ({ course }) => {
     >
       {/* Front Side */}
       <div className="add-note add-note-card-front">
-        <h2>Problem</h2>
+        <div>Problem</div>
         {frontImage ? (
           <img src={frontImage} alt="Front Preview" />
         ) : (
@@ -179,11 +179,10 @@ export const AddNote = ({ course }) => {
 
       </div>
 
-      <hr />
 
       {/* Back Side */}
       <div className="add-note add-note-card-back">
-        <h2>Solution</h2>
+        <div>Solution</div>
         {backImage ? (
           <img src={backImage} alt="Back Preview" />
         ) : (
