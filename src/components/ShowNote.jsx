@@ -100,7 +100,7 @@ export const ShowNote = ({ course }) => {
 
 
     return <div
-        id="note"
+        id="show-note"
     >   
         {notes.length==0&&<div id='no-notes'>No notes...</div>}
 
@@ -132,7 +132,7 @@ export const ShowNote = ({ course }) => {
                         }
 
                         {
-                            note && <><img style={{ display: 'none' }}
+                            note && !noteState&&<><img style={{ display: 'none' }}
                                 src={note?.backImgUrl} alt="preload" />
                                 <motion.img 
                                   initial={{ opacity: 0, y: 50 }}
