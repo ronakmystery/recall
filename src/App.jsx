@@ -83,7 +83,7 @@ function Home() {
   const addCourse = () => {
     let data = {}
 
-    let course = prompt('course:')
+    let course = prompt('add course')
 
     if (course) {
       data.name = course
