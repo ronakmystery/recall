@@ -4,7 +4,6 @@
     height: calc(100vh - 220px);
     border-radius: 10px;
     margin-top: 10px;
-    /* padding: 0 20px 20px 20px; */
 }
 
 .add-note{
@@ -38,9 +37,6 @@
     display: block;
     box-shadow: var(--shadow);
     border-radius: 5px;
-}
-.add-note-card-back{
-    border-bottom: 20px solid var(--green);
 }
 
 

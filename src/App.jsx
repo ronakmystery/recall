@@ -26,7 +26,7 @@ function Courses() {
   let actions = {
     // 'study': <GetNotes course={course} />,
     'study': <ShowNote course={course} />,
-    'all notes': <ShowAllNotes course={course} />,
+    // 'all notes': <ShowAllNotes course={course} />,
     'new note': <AddNote course={course} />,
 
   }
@@ -74,7 +74,7 @@ function Home() {
 
   const handleLogin = () => {
     const password = prompt('password:');
-    if (password == '3654') {
+    if (password == import.meta.env.VITE_ADMIN ) {
       localStorage.setItem('user', JSON.stringify('admin'));
       setUser('admin')
     }
