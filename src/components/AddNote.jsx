@@ -168,6 +168,7 @@ export const AddNote = ({ course }) => {
             onPaste={(e) => handlePaste(e, 'front')}
             type="file"
             accept="image/*"
+            className='img-choose'
             // capture="environment" required
             onChange={(e) => handleImageChange(e, 'front')}
             onClick={(e) => e.stopPropagation()} // Prevent parent click
@@ -199,6 +200,7 @@ export const AddNote = ({ course }) => {
           >paste image here</div> : <input
             type="file"
             accept="image/*"
+            className='img-choose'
             // capture="environment" required
             onChange={(e) => handleImageChange(e, 'back')}
             onClick={(e) => e.stopPropagation()} // Prevent parent click
